@@ -1,7 +1,4 @@
-<div id="main-container" class="container-fluid">
-<h1>Lista de publicaciones</h1>
-
-<div id="main-content">
+<div class='row'>
   <table class="table">
     <tr class='header'>
       <th>Id</th>
@@ -20,7 +17,7 @@
     </tr>
     <% end %>
   </table>
-<div>
-
-<div><%= link_to "Nueva", new_publication_path, class: 'btn btn-success btn-lg' %></div>
+</div>
+<div class='row'>
+  <%= link_to "Nueva", new_publication_path, class: 'btn btn-success btn-lg' %>
 </div>

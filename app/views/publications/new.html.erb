@@ -1,82 +1,86 @@
-<div id='main-container' class='container-fluid'>
-<h1>Alta de publicacion</h1>
+<div class='row col-sm-12'>
+  <h3>Datos nueva publicacion</h3>
+</div>
 <div class='row'>
-<%= form_for ( @publication ), class: 'form-horizontal' do |form| %>
-  <% if @publication.errors.any? %>
-    <div id="error_description">
-      <h2>
-        <%= pluralize(@publication.errors.count, "error") %> evitaron que esta publicacion se pudiera guardar:
-      </h2>
-      <ul>
-        <% @publication.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+  <%= form_for ( @publication ),  class: 'form-horizontal' do |form| %>
+    <% if @publication.errors.any? %>
+      <div id="error_description">
+        <h2>
+          <%= pluralize(@publication.errors.count, "error") %> evitaron que esta publicacion se pudiera guardar:
+        </h2>
+        <ul>
+          <% @publication.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class='form-group'>
+      <div class="col-sm-2 control-label">Nombre</div>
+      <div class="col-sm-10">
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
+    </div>
+  
+    <div class='form-group'>
+      <div class="col-sm-2 control-label">Descripcion</div>
+      <div class="col-sm-10">
+        <%= form.text_area :description, class: 'form-control' %>
+      </div>
+    </div>
+  
+    <div class='form-group'>
+      <div class="col-sm-2 control-label">Pais</div>
+      <div class="col-sm-10">
+        <%= form.text_field :country, class: 'form-control', value: 'Argentina' %>
+      </div>
+    </div>
+  
+    <div class='form-group'>
+      <div class="col-sm-2 control-label">Provincia</div>
+      <div class="col-sm-10">
+        <%= form.text_field :province, class: 'form-control', value: 'Buenos Aires' %>
+      </div>
+    </div>
+  
+    <div class='form-group'>
+      <div class="col-sm-2 control-label">Localidad</div>
+      <div class="col-sm-10">
+        <%= form.text_field :locality, class: 'form-control' %>
+      </div>
+    </div>
+  
+    <div class='form-group'>
+      <div class="col-sm-2 control-label">Direccion</div>
+      <div class="col-sm-10">
+        <%= form.text_field :address, class: 'form-control' %>
+      </div>
+    </div>
+  
+    <div class='col-sm-offset-2 col-sm-10'>
+        <div id="map-canvas">Mapa Aqui</div>
+    </div>
+  
+    <div class='form-group'>
+      <div class="col-sm-6">
+        <%= form.hidden_field :latitude  %>
+      </div>
+      <div class="col-sm-6">
+        <%= form.hidden_field :longitude  %>
+      </div>
+    </div>
+  
+    <div class='form-group'>
+      <div class='col-sm-12'><%= form.submit "Guardar", class: 'btn btn-success' %></div>
     </div>
   <% end %>
-  <div class='form-group'>
-    <div class="col-sm-2 control-label">Nombre</div>
-    <div class="col-sm-10">
-      <%= form.text_field :name, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class='form-group'>
-    <div class="col-sm-2 control-label">Descripcion</div>
-    <div class="col-sm-10">
-      <%= form.text_area :description, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class='form-group'>
-    <div class="col-sm-2 control-label">Pais</div>
-    <div class="col-sm-10">
-      <%= form.text_field :country, class: 'form-control', value: 'Argentina' %>
-    </div>
-  </div>
-
-  <div class='form-group'>
-    <div class="col-sm-2 control-label">Provincia</div>
-    <div class="col-sm-10">
-      <%= form.text_field :province, class: 'form-control', value: 'Buenos Aires' %>
-    </div>
-  </div>
-
-  <div class='form-group'>
-    <div class="col-sm-2 control-label">Localidad</div>
-    <div class="col-sm-10">
-      <%= form.text_field :locality, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class='form-group'>
-    <div class="col-sm-2 control-label">Direccion</div>
-    <div class="col-sm-10">
-      <%= form.text_field :address, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class='col-sm-offset-2 col-sm-10'>
-      <div id="map-canvas">Mapa Aqui</div>
-  </div>
-
-  <div class='form-group'>
-    <div class="col-sm-6">
-      <%= form.hidden_field :latitude  %>
-    </div>
-    <div class="col-sm-6">
-      <%= form.hidden_field :longitude  %>
-    </div>
-  </div>
-
-  <div class='form-group'>
-    <div class='col-sm-offset-2 col-sm-10'><%= form.submit "Guardar", class: 'btn btn-success' %></div>
-  </div>
-<% end %>
-
-  <div class='col-sm-offset-2 col-sm-10'>
+</div>
+  
+<div class='row'>
+  <div class='col-sm-12'>
     <%= link_to "Cancelar", publications_path, class: 'btn btn-danger' %>
   </div>
 </div>
 
-<div>
+
