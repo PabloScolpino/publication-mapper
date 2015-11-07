@@ -3,17 +3,10 @@
   They will automatically be included in application.css.
 */
 
-html, body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
+.map-bg {
+  height: 600px; 
 }
 
-#content {
-  height: 80%; 
-}
-
-#map-canvas {
-  height: 100%; 
+.map-sm {
+  height: 250px; 
 }

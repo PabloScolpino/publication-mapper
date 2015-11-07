@@ -2,6 +2,11 @@ class PublicationsController < ApplicationController
 
   def index
     @publications = Publication.all
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @publications }
+    end
   end
 
   def new
@@ -37,6 +42,6 @@ class PublicationsController < ApplicationController
 
   private
   def publication_params
-    params.require( :publication ).permit( :name, :description, :address, :country, :province, :locality)
+    params.require( :publication ).permit( :name, :description, :address, :country, :province, :locality, :latitude, :longitude)
   end
 end
