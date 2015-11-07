@@ -1,9 +1,7 @@
 <div id='main-container' class='container-fluid'>
+<h1>Alta de publicacion</h1>
 <div class='row'>
-<h1>Modificar datos publicacion</h1>
-</div>
-<div class='row'>
-<%= form_for ( @publication ), method: :patch, class: 'form-horizontal' do |form| %>
+<%= form_for ( @publication ),  method: :patch, class: 'form-horizontal' do |form| %>
   <% if @publication.errors.any? %>
     <div id="error_description">
       <h2>
@@ -31,9 +29,43 @@
   </div>
 
   <div class='form-group'>
+    <div class="col-sm-2 control-label">Pais</div>
+    <div class="col-sm-10">
+      <%= form.text_field :country, class: 'form-control', value: 'Argentina' %>
+    </div>
+  </div>
+
+  <div class='form-group'>
+    <div class="col-sm-2 control-label">Provincia</div>
+    <div class="col-sm-10">
+      <%= form.text_field :province, class: 'form-control', value: 'Buenos Aires' %>
+    </div>
+  </div>
+
+  <div class='form-group'>
+    <div class="col-sm-2 control-label">Localidad</div>
+    <div class="col-sm-10">
+      <%= form.text_field :locality, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class='form-group'>
     <div class="col-sm-2 control-label">Direccion</div>
     <div class="col-sm-10">
-      <%= form.text_area :address, class: 'form-control' %>
+      <%= form.text_field :address, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class='col-sm-offset-2 col-sm-10'>
+      <div id="map-canvas">Mapa Aqui</div>
+  </div>
+
+  <div class='form-group'>
+    <div class="col-sm-6">
+      <%= form.hidden_field :latitude  %>
+    </div>
+    <div class="col-sm-6">
+      <%= form.hidden_field :longitude  %>
     </div>
   </div>
 
