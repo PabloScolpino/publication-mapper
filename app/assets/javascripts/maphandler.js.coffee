@@ -30,16 +30,16 @@ window.initPublicationMap = () ->
   if ( $('#publication_country').length != 0 )
     $('#publication_country').change ->
       publication_field_change_cb()
-  
+
     $('#publication_province').change ->
       publication_field_change_cb()
-  
+
     $('#publication_locality').change ->
       publication_field_change_cb()
-  
+
     $('#publication_address').change ->
       publication_field_change_cb()
-  
+
     publication_field_change_cb()
 
 
@@ -77,8 +77,8 @@ window.initMainMap = () ->
 publications_list_cb = ( data ) ->
   markers = []
   $.each( data, (index, pub) ->
-    m = new google.maps.Marker({ 
-      map: window.main_map, 
+    m = new google.maps.Marker({
+      map: window.main_map,
       position:  {lat: pub.latitude, lng: pub.longitude},
       label: pub.name
       })
@@ -96,7 +96,7 @@ jQuery ->
         script.src  = 'https://maps.googleapis.com/maps/api/js?v=3.21&' + 'callback=initMainMap' + '&' + 'key=' + key
         document.body.appendChild(script);
         window.script_loaded = true
-      else 
+      else
         initMainMap()
 
     if ( $('#publication-map-canvas').length != 0 )
@@ -107,9 +107,9 @@ jQuery ->
         script.src  = 'https://maps.googleapis.com/maps/api/js?v=3.21&' + 'callback=initPublicationMap' + '&' + 'key=' + key
         document.body.appendChild(script);
         window.script_loaded = true
-      else 
+      else
         initPublicationMap()
 
-  
+
   $(document).ready( ready )
-  $(document).on('page:load', ready )
+#$(document).on('page:load', ready )
