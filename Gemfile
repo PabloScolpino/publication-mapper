@@ -29,9 +29,13 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bootstrap-sass', '~> 3.3.5'
+#gem 'materialize-sass'
+
 gem 'autoprefixer-rails'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
+# Graphs
+gem "google_visualr", ">= 2.5"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -45,6 +49,9 @@ gem 'sprockets-rails', :require => 'sprockets/railtie'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'better_errors'
 end
 
 group :development do
