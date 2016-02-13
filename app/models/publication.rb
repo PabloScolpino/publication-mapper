@@ -14,7 +14,7 @@ class Publication < ActiveRecord::Base
   validates :address, presence: true,
                    length: { minimum: 5 }
 
-  scope :approved, -> { where( 'approved_at is not nil and approved_at >=' + DateTime.now() ) }
+  scope :approved, -> { where( 'approved_at is not null and approved_at <= ?', DateTime.now() ) }
 
   geocoded_by :full_address
   #after_validation :geocode, if: full_address_changed?

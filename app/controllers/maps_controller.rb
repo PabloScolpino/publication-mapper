@@ -21,7 +21,7 @@ class MapsController < ApplicationController
   private
 
   def publications
-    Publication.all.collect do |publication|
+    Publication.all.approved.collect do |publication|
       [publication.latitude, publication.longitude, publication.name]
     end
   end
