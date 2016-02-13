@@ -4,21 +4,10 @@ class MapsController < ApplicationController
     data_table.new_column('number', 'Lat' )
     data_table.new_column('number', 'Lon' )
     data_table.new_column('string', 'Name')
-    data_table.add_rows(4)
-    data_table.set_cell(0, 0, 37.4232   )
-    data_table.set_cell(0, 1, -122.0853 )
-    data_table.set_cell(0, 2, 'Work'      )
-    data_table.set_cell(1, 0, 37.4289   )
-    data_table.set_cell(1, 1, -122.1697 )
-    data_table.set_cell(1, 2, 'University')
-    data_table.set_cell(2, 0, 37.6153   )
-    data_table.set_cell(2, 1, -122.3900 )
-    data_table.set_cell(2, 2, 'Airport'   )
-    data_table.set_cell(3, 0, 37.4422   )
-    data_table.set_cell(3, 1, -122.1731 )
-    data_table.set_cell(3, 2, 'Shopping'  )
+    data_table.add_rows( publications )
 
     opts   =  { showTip: true,
+                mapType: 'normal',
                 icons: {
                   default: {
                     normal: 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/48/Map-Marker-Ball-Azure-icon.png',
@@ -27,5 +16,17 @@ class MapsController < ApplicationController
                 }
               }
     @chart = GoogleVisualr::Interactive::Map.new(data_table, opts)
+  end
+
+  private
+
+  def publications
+    Publication.all.collect do |publication|
+      [publication.latitude, publication.longitude, publication.name]
+    end
+  end
+
+  def icons
+
   end
 end

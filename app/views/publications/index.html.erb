@@ -4,7 +4,6 @@
       <th>Id</th>
       <th>Nombre</th>
       <th>Descripcion</th>
-      <th>Estado</th>
       <th></th>
     </tr>
     <% @publications.each do |p| %>
@@ -12,7 +11,6 @@
       <td><%= p.id %></td>
       <td><%= p.name %></td>
       <td><%= p.description %></td>
-      <td><%= p.status %></td>
       <td><%= link_to "Editar", edit_publication_path( p ), class: 'btn btn-default btn-sm'  %></td>
     </tr>
     <% end %>

@@ -15,7 +15,6 @@ class PublicationsController < ApplicationController
 
   def create
     @publication = Publication.new(publication_params)
-    @publication.status = 'pending'
     if @publication.save
       redirect_to '/publications'
     else
