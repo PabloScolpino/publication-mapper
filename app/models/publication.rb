@@ -21,7 +21,7 @@ class Publication < ActiveRecord::Base
   after_validation :geocode, if: :full_address_changed?
 
   def full_address
-    address + locality + province + country
+    address + ', ' + locality + ', ' + province + ', ' + country
   end
 
   def full_address_changed?

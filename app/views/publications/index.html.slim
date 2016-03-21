@@ -1,0 +1,15 @@
+.row
+  table
+    tr
+      th Id
+      th Nombre
+      th Descripcion
+
+    - @publications.each do |p|
+      tr
+        td = p.id
+        td = p.name
+        td = p.description
+        td = link_to "Editar", edit_publication_path( p ), class: 'btn'
+.row
+  = link_to "Nueva", new_publication_path, class: 'btn'

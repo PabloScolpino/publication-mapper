@@ -1,0 +1,18 @@
+  = simple_form_for ( @publication ),  class: 'form-horizontal' do |form|
+    - if @publication.errors.any?
+      #error_description
+        h2
+          = pluralize(@publication.errors.count, "error") + ' evitaron que esta publicacion se pudiera guardar:'
+        ul
+          - @publication.errors.full_messages.each do |msg|
+            li
+              = msg
+
+    = form.input :name
+    = form.input :description, as: :text
+    = form.input :country, as: :string
+    = form.input :province, as: :string
+    = form.input :locality, as: :string
+    = form.input :address, as: :string
+
+    = form.button :submit, class: 'btn btn-success'

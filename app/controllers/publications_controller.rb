@@ -51,6 +51,7 @@ class PublicationsController < ApplicationController
   end
 
   private
+
   def publication_params
     params.require( :publication ).permit( :name, :description, :address, :country, :province, :locality, :latitude, :longitude)
   end
