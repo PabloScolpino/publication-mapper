@@ -1,0 +1,24 @@
+.row
+  table
+    tr
+      th Id
+      th Nombre
+      th Descripcion
+      th Fecha Aprobacion
+
+    - @publications.each do |p|
+      tr
+        td = p.id
+        td = p.name
+        td = p.description
+        td = p.approved_at
+        td = link_to approve_publication_path( p ), method: :put, class: 'btn green'
+          i.mdi-action-thumb-up
+        td = link_to edit_publication_path( p ), class: 'btn yellow'
+          i.mdi-image-edit
+        td = link_to revoke_publication_path( p ), method: :put, class: 'btn red'
+          i.mdi-action-thumb-down
+        td = link_to publication_path( p ), method: :delete, class: 'btn black'
+          i.mdi-action-delete
+.rowre
+  = link_to "Nueva", new_publication_path, class: 'btn'

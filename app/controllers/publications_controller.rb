@@ -1,8 +1,18 @@
 class PublicationsController < ApplicationController
-  before_action :grab_publication, only: [ :update, :show, :edit, :approve, :revoke]
+  before_action :grab_publication, only: [ :update, :show, :edit, :approve, :revoke, :destroy]
 
   def index
-    @publications = Publication.all.approved
+    @publications = Publication.all.approved.order(:id)
+    #@publications = Publication.all if current_user
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @publications }
+    end
+  end
+
+  def review
+    @publications = Publication.all.order(:id)
     #@publications = Publication.all if current_user
 
     respond_to do |format|
@@ -41,13 +51,18 @@ class PublicationsController < ApplicationController
   def approve
     @publication.approved_at = DateTime.now()
     @publication.save!
-    render :edit
+    redirect_to :publication_review
   end
 
   def revoke
     @publication.approved_at = nil
     @publication.save!
-    render :edit
+    redirect_to :publication_review
+  end
+
+  def destroy
+    @publication.destroy!
+    redirect_to :publication_review
   end
 
   private
