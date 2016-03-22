@@ -1,0 +1,10 @@
+.row
+  h3 = @publication.name
+
+.row.description
+  = @publication.description
+.row.address
+  = @publication.full_address
+
+.row
+  = render 'shared/map'
