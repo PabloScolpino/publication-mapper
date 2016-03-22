@@ -10,6 +10,8 @@
         td = p.id
         td = p.name
         td = p.description
-        td = link_to "Editar", edit_publication_path( p ), class: 'btn'
+        td = link_to publication_path( p ), class: 'btn'
+          i.mdi-action-info
+
 .row
   = link_to "Nueva", new_publication_path, class: 'btn'
