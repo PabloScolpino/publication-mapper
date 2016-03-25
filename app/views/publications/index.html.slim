@@ -1,17 +1,19 @@
 .row
   table
-    tr
-      th Id
-      th Nombre
-      th Descripcion
-
-    - @publications.each do |p|
+    thead
       tr
-        td = p.id
-        td = p.name
-        td = p.description
-        td = link_to publication_path( p ), class: 'btn light-blue'
-          i.mdi-action-info
+        th Nombre
+        th Direccion
+
+    tbody
+      - @publications.each do |p|
+        tr
+          td
+            b
+              = p.name
+          td = p.full_address
+          td = link_to publication_path( p ), class: 'btn light-blue'
+            i.mdi-action-info
 
 .row
   = link_to "Nueva", new_publication_path, class: 'btn light-blue'
