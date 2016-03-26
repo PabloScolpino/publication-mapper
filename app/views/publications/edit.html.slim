@@ -1,8 +1,9 @@
-.row
-  h3 Edicion datos publicacion
-.row
-  = render 'shared/publications_form'
-.row
-  = link_to "Cancelar", publications_path, class: 'btn btn-danger blue'
+.container
+  .row
+    h3 Edicion datos publicacion
+  .row
+    = render 'shared/publications_form'
+  .row
+    = link_to "Cancelar", publications_path, class: 'btn btn-danger blue'
 .row
   = render 'shared/map'

@@ -9,5 +9,11 @@ html
 body
   = render 'shared/navigation'
 
-  .main-container class='container'
-    = yield
+  - if !( notice.nil? and alert.nil?)
+    .flash-messages.col.s6
+      .notice
+        = notice
+      .alert
+        = alert
+
+  = yield

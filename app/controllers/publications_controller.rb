@@ -1,4 +1,5 @@
 class PublicationsController < ApplicationController
+  before_action :authenticate_user!, only: [ :review ]
   before_action :grab_publication, only: [ :update, :show, :edit, :approve, :revoke, :destroy]
   before_action :grab_chart, only: [ :update, :show, :edit ]
 

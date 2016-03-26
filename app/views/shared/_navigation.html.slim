@@ -1,12 +1,16 @@
 nav class='light-blue'
   .nav-wrapper
-    a href='#' class='brand-logo' Logo
-    ul#nav-mobile class='right hide-on-med-and-down'
+    a.brand-logo
+      = link_to "logo", root_path()
+    ul#nav-mobile.right
       li
-        a href="/" Mapa
+        = link_to "Mapa", root_path()
       li
-        a href="/publications" Lista
+        = link_to 'Lista', publications_path
       li
-        a href="/publications/new" Nueva
+        = link_to 'Nueva', new_publication_path
       li
-        a href="/publications/review" Revision
+        = link_to 'Revision', publication_review_path
+      - if user_signed_in?
+        li
+          = link_to "Desloguear", destroy_user_session_path
