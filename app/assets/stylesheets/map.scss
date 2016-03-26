@@ -3,12 +3,12 @@ html, body {
   width: 100%;
 }
 
-#map {
-  height: 90%;
+h1 {
+  font-size: 2rem;
 }
 
-.facebook-button {
-  background-color: #3b5998
+#map {
+  height: 90%;
 }
 
 .flash-messages {
@@ -17,4 +17,13 @@ html, body {
   left: 15%;
   background-color: lightgray;
   padding: 0.5rem;
+
+  .notice {
+    color: green;
+
+  }
+
+  .alert {
+    color: red;
+  }
 }

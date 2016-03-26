@@ -50,6 +50,7 @@ class PublicationsController < ApplicationController
 
   def edit
     grab_chart
+    @tags = Tag.all
   end
 
   def approve
@@ -72,7 +73,7 @@ class PublicationsController < ApplicationController
   private
 
   def publication_params
-    params.require( :publication ).permit( :name, :description, :address, :country, :province, :locality, :latitude, :longitude)
+    params.require( :publication ).permit( :name, :description, :address, :country, :province, :locality, :latitude, :longitude, tag_ids: [])
   end
 
   def grab_publication

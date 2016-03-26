@@ -1,0 +1,23 @@
+.container
+  .row
+    h1 Etiquetas
+    p Lista de etiquetas asignables a las publicaciones
+    = link_to 'Nueva', new_tag_path, class: 'btn'
+  .row
+    table
+      thead
+        tr
+          th Nombre
+          th Ver
+          th Editar
+          th Borrar
+      tbody
+        - @tags.each do |tag|
+          tr
+            td = tag.name
+            td = link_to tag, class: 'btn light-blue'
+              i.mdi-action-info
+            td = link_to edit_tag_path(tag), class: 'btn yellow'
+              i.mdi-image-edit
+            td = link_to tag, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'btn light-blue darken-4'
+              i.mdi-action-delete
