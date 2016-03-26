@@ -10,3 +10,6 @@ nav class='light-blue'
         a href="/publications/new" Nueva
       li
         a href="/publications/review" Revision
+      - if user_signed_in?
+        li
+          = link_to "Desloguear", destroy_user_session_path
