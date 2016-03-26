@@ -1,3 +1,6 @@
-h2 Ingreso Administracion
-
-= link_to "Logueo con Facebook", user_omniauth_authorize_path(:facebook)
+.container
+  .row
+    h3 Ingreso Administracion
+  .row
+    button.large.btn.indigo
+      = link_to 'Ingreso con Facebook', user_omniauth_authorize_path(:facebook)
