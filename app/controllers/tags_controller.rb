@@ -40,9 +40,6 @@ class TagsController < ApplicationController
   # PATCH/PUT /tags/1
   # PATCH/PUT /tags/1.json
   def update
-    puts '==========================================='
-    puts 'in tag controller:update'
-    puts params.inspect
 
     respond_to do |format|
       if @tag.update(tag_params)
