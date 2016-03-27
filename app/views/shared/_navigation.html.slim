@@ -2,15 +2,20 @@ nav class='light-blue'
   .nav-wrapper
     a.brand-logo
       = link_to "logo", root_path()
-    ul#nav-mobile.right
+    ul.right
       li
         = link_to "Mapa", root_path()
       li
         = link_to 'Lista', publications_path
       li
         = link_to 'Nueva', new_publication_path
-      li
-        = link_to 'Revision', publication_review_path
       - if user_signed_in?
         li
+          = link_to 'Revision', publication_review_path
+        li
+          = link_to 'Etiquetas', tags_path
+        li
           = link_to "Desloguear", destroy_user_session_path
+      - else
+        li
+          = link_to 'Administracion', new_user_session_path

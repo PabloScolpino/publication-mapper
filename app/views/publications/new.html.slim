@@ -1,6 +1,7 @@
-.row.container
-  h3 Datos nueva publicacion
-.row.container
-  = render 'shared/publications_form'
-.row.container
-  = link_to "Cancelar", publications_path, class: 'btn btn-danger light-blue darken-4'
+.container
+  .row
+    h1 Datos nueva publicacion
+  .row
+    = render 'shared/publications_form'
+  .row
+    = link_to "Cancelar", publications_path, class: 'btn btn-danger light-blue darken-4'

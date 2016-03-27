@@ -14,4 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require materialize-sprockets
+//= require cloudinary
+//= require jquery.ui.widget
+//= require jquery.iframe-transport
+//= require jquery.fileupload
+//= require cloudinary/jquery.cloudinary
+//= require attachinary
 //= require_tree .

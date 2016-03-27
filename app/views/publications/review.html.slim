@@ -1,3 +1,6 @@
+.row.container
+  h1 Revision de publicaciones
+  = link_to "Nueva", new_publication_path, class: 'btn light-blue'
 .row
   table
     thead
@@ -31,7 +34,5 @@
             i.mdi-action-thumb-up
           td = link_to revoke_publication_path( p ), class: 'btn red'
             i.mdi-action-thumb-down
-          td = link_to publication_path( p ), method: :delete, class: 'btn light-blue darken-4'
+          td = link_to publication_path( p ), data: { confirm: 'Está seguro?'}, method: :delete, class: 'btn light-blue darken-4'
             i.mdi-action-delete
-.row
-  = link_to "Nueva", new_publication_path, class: 'btn light-blue'

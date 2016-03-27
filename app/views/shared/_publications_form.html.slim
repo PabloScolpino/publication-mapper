@@ -9,6 +9,11 @@
               = msg
 
     = form.input :name
+
+    = form.association :icon_tag
+
+    = form.association :tags
+
     = form.input :description, as: :text
     = form.input :country, as: :string
     = form.input :province, as: :string

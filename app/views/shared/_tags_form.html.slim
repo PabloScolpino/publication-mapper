@@ -1,0 +1,18 @@
+= simple_form_for ( @tag ),  class: 'form-horizontal' do |form|
+  // = f.error_notification
+  - if @tag.errors.any?
+    #error_description
+      h2
+        = pluralize(@tag.errors.count, "error") + ' evitaron que esta etiqueta se pudiera guardar:'
+      ul
+        - @tag.errors.full_messages.each do |msg|
+          li
+            = msg
+
+  .form-inputs
+    = form.input :name
+    = form.input :description, as: :text
+    = form.input :icon, as: :attachinary
+
+  .form-actions
+    = form.button :submit, class: 'btn btn-success light-blue'
