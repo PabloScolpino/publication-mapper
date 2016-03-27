@@ -81,7 +81,10 @@ class PublicationsController < ApplicationController
   private
 
   def publication_params
-    params.require( :publication ).permit( :name, :description, :address, :country, :province, :locality, :latitude, :longitude, tag_ids: [])
+    params.require( :publication ).permit( :name, :description,
+                                           :address, :country, :province, :locality,
+                                           :latitude, :longitude,
+                                           :icon_tag_id, tag_ids: [])
   end
 
   def grab_publication

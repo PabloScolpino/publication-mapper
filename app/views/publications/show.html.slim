@@ -1,11 +1,22 @@
 .container
   .row
-    h1 = @publication.name
+    h1
+      span
+        = @publication.name
+      - if !@publication.icon_tag.nil?
+        span
+          = cl_image_tag(@publication.icon_tag.icon.path, { size: '50x50', radius: :max, crop: :thumb })
 
   .row.description
     = @publication.description
   .row.address
     = @publication.full_address
+
+  .row.tags
+    - for tag in @publication.tags do
+      .tag
+        = tag.name
+        = cl_image_tag(tag.icon.path, { size: '50x50', radius: :max, crop: :thumb })
 
 .row
   = render 'shared/map'

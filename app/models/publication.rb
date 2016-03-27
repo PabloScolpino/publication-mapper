@@ -3,6 +3,8 @@ class Publication < ActiveRecord::Base
   has_many :tags, through: :taggings
   accepts_nested_attributes_for :tags
 
+  belongs_to :icon_tag, class_name: 'Tag'
+
   validates :name, presence: true,
                    length: { minimum: 5 }
 
@@ -21,8 +23,8 @@ class Publication < ActiveRecord::Base
 
   def google_chart_point
     point = [ self.latitude, self.longitude, self.name ]
-    if !self.tags.first.nil?
-      point << self.tags.first.name
+    if !self.icon_tag.nil?
+      point << self.icon_tag.name
     else
       point << nil #nil is 'default'
     end
