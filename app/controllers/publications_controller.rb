@@ -1,7 +1,15 @@
 class PublicationsController < ApplicationController
   before_action :authenticate_user!, only: [ :review ]
   before_action :grab_publication, only: [ :update, :show, :edit, :approve, :revoke, :destroy]
-  before_action :grab_chart, only: [ :update, :show, :edit ]
+  before_action :grab_publications, only: [ :map ]
+  before_action :grab_map_options, only: [ :map ]
+  before_action :grab_map_options_single, only: [ :update, :show, :edit ]
+  before_action :grab_map_points, only: [ :map ]
+  before_action :grab_map_points_single, only: [ :update, :show, :edit ]
+  before_action :grab_chart, only: [ :update, :show, :edit, :map ]
+
+  def map
+  end
 
   def index
     @publications = Publication.all.approved.order(:id)
@@ -80,30 +88,44 @@ class PublicationsController < ApplicationController
     @publication = Publication.find(params[:id])
   end
 
+  def grab_publications
+    @publications = Publication.all.approved
+  end
+
+  def grab_map_points
+    @map_points = @publications.collect do |p|
+      p.google_chart_point
+    end
+  end
+
+  def grab_map_points_single
+    @map_points = [ @publication.google_chart_point ]
+  end
+
   def grab_chart
     data_table = GoogleVisualr::DataTable.new
     data_table.new_column('number', 'Lat' )
     data_table.new_column('number', 'Lon' )
     data_table.new_column('string', 'Name')
-    map_point = [ @publication.latitude,
-                  @publication.longitude,
-                  @publication.name ]
-    data_table.add_rows( [ map_point ] )
+    data_table.new_column('string', 'Marker')
 
+    data_table.add_rows( @map_points )
 
-    @chart = GoogleVisualr::Interactive::Map.new(data_table, map_options)
+    @chart = GoogleVisualr::Interactive::Map.new(data_table, @map_options)
   end
 
-  def map_options
-    { showTip: true,
-      mapType: 'normal',
-      zoomLevel: 12,
-      icons: {
-        default: {
-          normal: 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/48/Map-Marker-Ball-Azure-icon.png',
-          selected: 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/48/Map-Marker-Ball-Right-Azure-icon.png'
-        }
-      }
-    }
+  def grab_map_options_single
+    @map_options = { showTip: true,
+                     mapType: 'normal',
+                     zoomLevel: 12,
+                     icons: Tag.map_icons
+                    }
+  end
+
+  def grab_map_options
+    @map_options = { showTip: true,
+                     mapType: 'normal',
+                     icons: Tag.map_icons
+                   }
   end
 end

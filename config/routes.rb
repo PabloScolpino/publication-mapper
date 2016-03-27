@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
-  root 'maps#index'
+  root 'publications#map'
 
   get '/publications/review',       to: 'publications#review',  as: 'publication_review'
   resources :publications

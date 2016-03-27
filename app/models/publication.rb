@@ -18,4 +18,14 @@ class Publication < ActiveRecord::Base
   def full_address_changed?
     address_changed? || locality_changed? || province_changed? || country_changed?
   end
+
+  def google_chart_point
+    point = [ self.latitude, self.longitude, self.name ]
+    if !self.tags.first.nil?
+      point << self.tags.first.name
+    else
+      point << nil #nil is 'default'
+    end
+    point
+  end
 end
