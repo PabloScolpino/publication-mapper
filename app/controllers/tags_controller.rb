@@ -40,6 +40,10 @@ class TagsController < ApplicationController
   # PATCH/PUT /tags/1
   # PATCH/PUT /tags/1.json
   def update
+    puts '==========================================='
+    puts 'in tag controller:update'
+    puts params.inspect
+
     respond_to do |format|
       if @tag.update(tag_params)
         format.html { redirect_to tags_url, notice: 'Tag was successfully updated.' }
@@ -69,6 +73,6 @@ class TagsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tag_params
-      params.require( :tag ).permit( :name, :description )
+      params.require( :tag ).permit( :name, :description, :icon )
     end
 end

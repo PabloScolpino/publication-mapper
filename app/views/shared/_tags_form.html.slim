@@ -11,7 +11,8 @@
 
   .form-inputs
     = form.input :name
-    // = form.input :description, as: :text
+    = form.input :description, as: :text
+    = form.input :icon, as: :attachinary
 
   .form-actions
     = form.button :submit, class: 'btn btn-success light-blue'

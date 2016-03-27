@@ -36,6 +36,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Visual Styling
 gem 'materialize-sass'
 
+# Image handling
+gem 'cloudinary'
+gem 'attachinary'
+
 # Maps
 gem "google_visualr", ">= 2.5"
 gem 'geocoder'

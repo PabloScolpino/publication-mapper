@@ -1,2 +1,10 @@
 .container
   h1 = @tag.name
+
+  .row
+    p = @tag.description
+
+  - if @tag.icon?
+    .row
+      p Icono
+      = cl_image_tag(@tag.icon.path)
