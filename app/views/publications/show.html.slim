@@ -18,5 +18,10 @@
         = tag.name
         = cl_image_tag(tag.icon.path, { size: '50x50', radius: :max, crop: :thumb })
 
+
+  - if user_signed_in?
+    .row
+      = link_to 'Editar', edit_publication_path(@publication), class: 'btn light-blue'
+
 .row
   = render 'shared/map'
