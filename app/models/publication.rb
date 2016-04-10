@@ -30,4 +30,9 @@ class Publication < ActiveRecord::Base
     end
     point
   end
+
+  def approved?
+    self.approved_at != nil && self.approved_at <= DateTime.now()
+
+  end
 end
