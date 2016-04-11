@@ -96,7 +96,7 @@ class PublicationsController < ApplicationController
   end
 
   def grab_map_points
-    @map_points = @publications.collect do |p|
+    @map_points = @publications.select{ |p| p.latitude != nil and p.longitude!= nil }.collect do |p|
       p.google_chart_point
     end
   end
