@@ -13,13 +13,17 @@ class Tag < ActiveRecord::Base
     }
     Tag.all.each do |tag|
       if tag.icon?
-        icons[tag.name] = {
+        icons[tag.icon_name] = {
           normal: tag.cl_icon_url,
           selected: tag.cl_icon_url
         }
       end
     end
     icons
+  end
+
+  def icon_name
+    self.name.gsub(/\s+/,'_')
   end
 
   def cl_icon_url

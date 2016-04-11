@@ -24,7 +24,7 @@ class Publication < ActiveRecord::Base
   def google_chart_point
     point = [ self.latitude, self.longitude, self.name ]
     if !self.icon_tag.nil?
-      point << self.icon_tag.name
+      point << self.icon_tag.icon_name
     else
       point << nil #nil is 'default'
     end
