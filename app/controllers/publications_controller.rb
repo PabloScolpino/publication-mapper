@@ -1,7 +1,7 @@
 class PublicationsController < ApplicationController
   before_action :authenticate_user!, only: [ :review ]
   before_action :grab_publication, only: [ :update, :show, :edit, :approve, :revoke, :destroy]
-  before_action :grab_publications, only: [ :map ]
+  before_action :grab_publications, only: [ :index, :review, :map ]
   before_action :grab_map_options, only: [ :map ]
   before_action :grab_map_options_single, only: [ :update, :show, :edit ]
   before_action :grab_map_points, only: [ :map ]
@@ -12,9 +12,6 @@ class PublicationsController < ApplicationController
   end
 
   def index
-    @publications = Publication.all.approved.order(:id)
-    #@publications = Publication.all if current_user
-
     respond_to do |format|
       format.html
       format.json { render json: @publications }
@@ -22,9 +19,6 @@ class PublicationsController < ApplicationController
   end
 
   def review
-    @publications = Publication.all.order(:id)
-    #@publications = Publication.all if current_user
-
     respond_to do |format|
       format.html
       format.json { render json: @publications }
@@ -92,7 +86,8 @@ class PublicationsController < ApplicationController
   end
 
   def grab_publications
-    @publications = Publication.all.approved
+    @publications = Publication.all.order(:name) if current_user
+    @publications ||= Publication.all.approved.order(:name)
   end
 
   def grab_map_points
