@@ -22,7 +22,12 @@ class Publication < ActiveRecord::Base
   end
 
   def google_chart_point
-    point = [ self.latitude, self.longitude, self.name ]
+    url = Rails.application.routes.url_helpers.publication_path(self.id)
+    description = "<h1><a href='#{url}'>#{self.name}</a></h1>"
+    description += "<p>#{self.description}</p>"
+    description += "<p><a href='#{url}'>Ver mas</a></p>"
+
+    point = [ self.latitude, self.longitude, description ]
     if !self.icon_tag.nil?
       point << self.icon_tag.icon_name
     else
