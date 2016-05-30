@@ -27,6 +27,10 @@ class Tag < ActiveRecord::Base
   end
 
   def cl_icon_url
-    Cloudinary::Utils::cloudinary_url(self.icon.public_id, size: '50x50', crop: :scale )
+    Cloudinary::Utils::cloudinary_url(
+          'pin',
+          transformation: { size: '60x90', crop: :scale },
+          overlay: self.icon.public_id,
+          size: '40x40', gravity: 'north', y: 5   )
   end
 end
