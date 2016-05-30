@@ -40,7 +40,6 @@ class PublicationsController < ApplicationController
 
   def update
     if @publication.update(publication_params)
-      #redirect_to '/publications'
       redirect_to edit_publication_path(@publication)
     else
       render :edit
