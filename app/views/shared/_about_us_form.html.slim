@@ -1,0 +1,8 @@
+= simple_form_for(@about_us) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :body, as: :text, label: 'Contenido pagina', input_html: { rows: '15' , :style => 'height: 100%'}
+
+  .form-actions
+    = f.button :submit, 'Guardar', class: 'btn light-blue'

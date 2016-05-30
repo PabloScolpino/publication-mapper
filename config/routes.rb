@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :tags
   devise_for :users, controllers: {omniauth_callbacks: 'omniauth_callbacks'}
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
@@ -12,6 +11,8 @@ Rails.application.routes.draw do
   resources :publications
   get '/publications/:id/approve',  to: 'publications#approve', as: 'approve_publication'
   get '/publications/:id/revoke',   to: 'publications#revoke',  as: 'revoke_publication'
+  resources :about_us
+  resources :tags
 
   mount Attachinary::Engine => "/attachinary"
 end

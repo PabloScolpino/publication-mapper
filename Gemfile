@@ -20,6 +20,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'slim-rails'
 gem 'simple_form'
 gem 'country_select'
+gem 'redcarpet'
 
 # use puma as the webserver
 gem 'puma'

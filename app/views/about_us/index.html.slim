@@ -1,0 +1,13 @@
+.row.container
+  h1 Acerca de nosotros
+
+  .body
+    - if not @body.nil?
+      == @body
+    - else
+      - if not @about_us.nil?
+        = @about_us.body
+
+- if user_signed_in? and not @about_us.nil?
+  .row.container
+    = link_to "Editar", edit_about_u_path(@about_us), class: 'btn light-blue'

@@ -9,6 +9,8 @@ nav class='light-blue'
         = link_to 'Lista', publications_path
       li
         = link_to 'Nueva', new_publication_path
+      li
+        = link_to 'Nosotros', about_us_path
       - if user_signed_in?
         li
           = link_to 'Revision', publication_review_path
