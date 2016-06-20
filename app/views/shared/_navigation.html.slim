@@ -1,7 +1,7 @@
 nav class='light-blue'
   .nav-wrapper
     a.brand-logo
-      = link_to "logo", root_path()
+      = link_to cl_image_tag('logo', { height: 60, crop: :scale } ), root_path()
     ul.right
       li
         = link_to "Mapa", root_path()
