@@ -3,7 +3,7 @@
     h1
       span
         = @publication.name
-      - if !@publication.icon_tag.nil?
+      - if !@publication.icon_tag.nil? and !@publication.icon_tag.icon.nil?
         span
           = cl_image_tag(@publication.icon_tag.icon.path, { size: '50x50', radius: :max, crop: :thumb })
 
