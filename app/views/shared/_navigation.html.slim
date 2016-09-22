@@ -13,11 +13,11 @@ nav class='light-blue'
         = link_to 'Nosotros', about_us_path
       - if user_signed_in?
         li
-          = link_to 'Revision', publication_review_path
+          = link_to 'Revisión', publication_review_path
         li
           = link_to 'Etiquetas', tags_path
         li
           = link_to "Desloguear", destroy_user_session_path
       - else
         li
-          = link_to 'Administracion', new_user_session_path
+          = link_to 'Administración', new_user_session_path
