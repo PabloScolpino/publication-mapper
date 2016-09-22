@@ -2,7 +2,7 @@
     - if @publication.errors.any?
       #error_description
         h2
-          = pluralize(@publication.errors.count, "error") + ' evitaron que esta publicacion se pudiera guardar:'
+          = pluralize(@publication.errors.count, "error") + ' evitaron que esta publicación se pudiera guardar:'
         ul
           - @publication.errors.full_messages.each do |msg|
             li
