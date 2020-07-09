@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4'
 # Templating
 gem 'slim-rails'
 gem 'simple_form'
+# gem "simple_form", ">= 5.0.0"
 gem 'country_select'
 gem 'redcarpet'
 
@@ -42,19 +43,12 @@ gem 'attachinary'
 gem "google_visualr", ">= 2.5"
 gem 'geocoder'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 # Authentication
 gem 'devise'
 gem 'omniauth-facebook'
+
+# Security updates
+# gem "rack", ">= 2.1.4"
 
 group :production do
   gem 'rails_12factor'
@@ -63,6 +57,7 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug'
+  gem 'rspec-rails', '~> 3.9'
   gem 'pry'
   gem 'pry-rails'
   gem 'better_errors'
