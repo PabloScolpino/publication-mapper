@@ -1,4 +1,4 @@
-FROM ruby:2.3.8
+FROM ruby:2.6
 
 ARG RAILS_ROOT=/app
 ARG PACKAGES='curl gnupg nodejs postgresql-client'
