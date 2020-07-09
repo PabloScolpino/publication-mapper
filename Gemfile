@@ -1,18 +1,15 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4'
-
-#use postgresql
-gem 'pg'
+gem 'rails', '~> 4'
+gem 'pg', '~> 0.9'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 4'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -65,7 +62,7 @@ end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  # gem 'byebug'
   gem 'pry'
   gem 'pry-rails'
   gem 'better_errors'
@@ -76,8 +73,8 @@ group :development do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'letter_opener'
+  # gem 'spring'
+  # gem 'letter_opener'
   gem 'foreman'
 end
 
