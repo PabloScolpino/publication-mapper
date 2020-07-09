@@ -58,6 +58,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug'
   gem 'rspec-rails', '~> 3.9'
+  gem 'factory_bot_rails'
+  gem 'awesome_print'
   gem 'pry'
   gem 'pry-rails'
   gem 'better_errors'
@@ -71,5 +73,6 @@ group :development do
   # gem 'spring'
   # gem 'letter_opener'
   gem 'foreman'
+  gem 'guard-rspec', require: false
 end
 
