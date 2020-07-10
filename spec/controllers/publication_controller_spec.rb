@@ -22,7 +22,7 @@ describe PublicationsController do
   describe 'GET show/:id' do
     let(:publication_1) { create(:publication) }
     it 'shows the page' do
-      get :show, id: publication_1.id
+      get :show, params: { id: publication_1.id }
       expect(response).to have_http_status(:success)
     end
   end
