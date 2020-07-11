@@ -2,14 +2,14 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
-gem 'pg', '~> 0.9'
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4'
+gem 'coffee-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -40,7 +40,7 @@ gem 'cloudinary'
 gem 'attachinary'
 
 # Maps
-gem "google_visualr", ">= 2.5"
+gem 'google_visualr'
 gem 'geocoder'
 
 # Authentication
