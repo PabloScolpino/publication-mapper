@@ -2,7 +2,8 @@ doctype html
 html
   head
     title PublicationsMapper
-    <script src='https://www.google.com/jsapi'></script>
+    = javascript_include_tag "https://www.gstatic.com/charts/loader.js?key=#{ENV['GOOGLE_API_KEY']}"
+    = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_KEY']}"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
