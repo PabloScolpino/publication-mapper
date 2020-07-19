@@ -43,7 +43,7 @@ jobs:
 
     - name: Set up database
       run: bundle exec rake db:setup
-      with:
+      env:
         TEST_DATABASE_URL: postgresql://postgres@postgres:5432/pubmap_test
 
     - name: Run tests
