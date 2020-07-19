@@ -28,7 +28,8 @@ jobs:
           --health-retries 5
 
     env:
-      TEST_DATABASE_URL: postgresql://postgres:postgres@postgres:5432/pubmap_test
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/pubmap_test
+      RAILS_ENV: test
 
     steps:
     - uses: actions/checkout@v2
