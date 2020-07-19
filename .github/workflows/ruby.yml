@@ -20,30 +20,38 @@ jobs:
         # Provide the password for postgres
         env:
           POSTGRES_PASSWORD: 'postgres'
-        # Set health checks to wait until postgres has started
+          POSTGRES_DB: pubmap_test
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+        ports: ['5432:5432']
 
     env:
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/pubmap_test
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/pubmap_test
       RAILS_ENV: test
 
     steps:
     - uses: actions/checkout@v2
 
     - name: Set up Ruby
-    # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
-    # change this to (see https://github.com/ruby/setup-ruby#versioning):
-    # uses: ruby/setup-ruby@v1
-      uses: ruby/setup-ruby@ec106b438a1ff6ff109590de34ddc62c540232e0
+      uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.6
+        ruby-version: 2.6.6
 
-    - name: Install dependencies
-      run: bundle install
+    - name: Ruby gem cache
+      uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
+
+    - name: Install gems
+      run: |
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3
 
     - name: Set up database
       run: bundle exec rake db:setup
