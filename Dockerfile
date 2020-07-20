@@ -32,9 +32,13 @@ ENV BUNDLE_PATH=/bundler
 ENV BUNDLE_BIN="$BUNDLE_PATH/bin"
 ENV PATH="/app/bin:$BUNDLE_BIN:$PATH"
 
-ADD . .
+ADD Gemfile .
+ADD Gemfile.lock .
 
 RUN bundle install
 
+ADD . .
+
 EXPOSE 3000
-CMD "bundle exec puma -C config/puma.rb"
+
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]

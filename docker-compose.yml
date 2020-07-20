@@ -6,7 +6,7 @@ networks:
 services:
   web:
     build: .
-    image: "app:${TAG}"
+    image: "pabloscolpino/publication-mapper:latest"
     depends_on:
       - db
     networks:
