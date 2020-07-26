@@ -5,8 +5,9 @@ networks:
 
 services:
   web:
-    build: .
-    image: "pabloscolpino/publication-mapper:latest"
+    build:
+      context: .
+      target: development
     depends_on:
       - db
     networks:
@@ -25,7 +26,7 @@ services:
       TEST_DATABASE_URL: postgres://postgres@db/pubmap_test
 
   db:
-    image: postgres:9.6.15
+    image: postgres:9.6.15-alpine
     networks:
       - publicationmapper
     volumes:

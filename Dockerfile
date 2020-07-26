@@ -1,44 +1,49 @@
-FROM ruby:2.6
-
-ARG RAILS_MAX_WORKERS=1
-ARG RAILS_LOG_TO_STDOUT=true
-ARG LOG_LEVEL=DEBUG
-ARG PORT=3000
-ARG DATABASE_URL=default
-
-ARG FACEBOOK_APP_ID=default
-ARG FACEBOOK_APP_SECRET=default
-
-ARG GOOGLE_API_KEY=default
-
-ARG CLOUDINARY_NAME=default
-ARG CLOUDINARY_API_KEY=default
-ARG CLOUDINARY_API_SECRET=default
-ARG COVERALLS_REPO_TOKEN=default
-ARG ROLLBAR_ACCESS_TOKEN=default
-
 ARG RAILS_ROOT=/app
-ARG PACKAGES='curl gnupg nodejs postgresql-client'
+ARG PACKAGES="build-base ruby-dev postgresql-dev xz-libs tzdata nodejs"
 
-# Update container and add dependencies
-RUN curl -sL https://deb.nodesource.com/setup_12.x  | bash - && \
-    apt-get update -y -qq && apt-get upgrade -y -qq && apt-get -y install $PACKAGES -qq && \
-    apt-get clean
+################################################################################
+# Base configuration
+#
+FROM ruby:2.6-alpine AS builder-base
+ARG RAILS_ROOT
 
 WORKDIR $RAILS_ROOT
+COPY . .
+
+EXPOSE 3000
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+
+################################################################################
+# Production builder stage
+#
+FROM builder-base AS production-builder
+ARG PACKAGES
+RUN apk add --update-cache $PACKAGES && \
+    bundle install --jobs 4 --retry 3 --deployment
+
+################################################################################
+# Production image
+#
+# Same as the base for the base image
+FROM ruby:2.6-alpine AS production
+ENV RAILS_ENV=production
+ARG RAILS_ROOT
+# Coping the generated artifacts and scrapping all the libs and binaries not necesary for execution
+COPY --from=production-builder $RAILS_ROOT $RAILS_ROOT
+
+################################################################################
+# Development image
+#
+FROM builder-base AS development
+ENV RAILS_ENV=development
+
+ARG PACKAGES
+ARG RAILS_ROOT
 
 ENV BUNDLE_APP_CONFIG="$RAILS_ROOT/.bundle"
 ENV BUNDLE_PATH=/bundler
 ENV BUNDLE_BIN="$BUNDLE_PATH/bin"
-ENV PATH="/app/bin:$BUNDLE_BIN:$PATH"
+ENV PATH="$RAILS_ROOT/bin:$BUNDLE_BIN:$PATH"
 
-ADD Gemfile .
-ADD Gemfile.lock .
-
-RUN bundle install
-
-ADD . .
-
-EXPOSE 3000
-
-CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+RUN apk add --update-cache $PACKAGES && \
+    bundle install --jobs 4 --retry 3
