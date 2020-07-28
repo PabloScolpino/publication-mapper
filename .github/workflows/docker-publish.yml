@@ -26,30 +26,34 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build image
-        run: docker build . --file Dockerfile --tag $IMAGE_NAME --target=production
-
-      - name: Log into registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-
-      - name: Push image
-        run: |
-          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
-
-          # Change all uppercase to lowercase
-          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-
-          # Strip git ref prefix from version
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-
-          # Strip "v" prefix from tag name
-          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-
-          # Use Docker `latest` tag convention
-          [ "$VERSION" == "master" ] && VERSION=latest
-
-          echo IMAGE_ID=$IMAGE_ID
-          echo VERSION=$VERSION
-
-          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-          docker push $IMAGE_ID:$VERSION
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v1.1.0
+        with:
+          # Username used to log in to a Docker registry. If not set then no login will occur
+          username: ${{ github.actor }}
+          # Password or personal access token used to log in to a Docker registry. If not set then no login will occur
+          password: ${{ secrets.GITHUB_TOKEN }}
+          # Docker repository to tag the image with
+          repository: pabloscolpino/publication-mapper
+          # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
+          tags: latest
+          # Automatically tags the built image with the git reference as per the readme
+          # tag_with_ref: # optional
+          # Automatically tags the built image with the git short SHA as per the readme
+          # tag_with_sha: # optional
+          #
+          # Path to the build context
+          # Sets the target stage to build
+          target: production
+          # Always attempt to pull a newer version of the image
+          # always_pull: # optional
+          # Comma-delimited list of build-time variables
+          # build_args: # optional
+          # Comma-delimited list of images to consider as cache sources
+          # cache_froms: # optional
+          # Comma-delimited list of labels to add to the built image
+          # labels: # optional
+          # Adds labels with git repository information to the built image
+          # add_git_labels: # optional
+          # Whether to push the image
+          # push: # optional, default is true
