@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+secretGenerator:
+- name: db-config
+  literals:
+  - password=ThisIsATestPassword
+resources:
+  - 00-ingress-custom-resources.yml
+  - 01-ingress-service.yml
+  - 02-ingress-service-account.yml
+  - 03-ingress-deployment.yml
+  - 04-ingress-routes.yml
+  - 10-db-service.yml
+  - 11-db-pvc.yml
+  - 12-db-deployment.yml
+  - 20-app-service.yml
+  - 21-app-deployment.yml

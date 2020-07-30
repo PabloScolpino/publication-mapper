@@ -1,0 +1,29 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+
+metadata:
+  name: publication-mapper-web
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: publication-mapper-web
+
+  strategy:
+    type: Recreate
+
+  template:
+    metadata:
+      labels:
+        app: publication-mapper-web
+    spec:
+      containers:
+        - name: web
+          # image: pabloscolpino/publication-mapper:latest
+          # imagePullPolicy: Always
+          image: containous/whoami
+          ports:
+            - containerPort: 80
+              name: web
