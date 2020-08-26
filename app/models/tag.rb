@@ -29,6 +29,7 @@ class Tag < ApplicationRecord
   def cl_icon_url
     Cloudinary::Utils::cloudinary_url(
           'pin',
+          secure: true,
           transformation: { size: '60x90', crop: :scale },
           overlay: self.icon.public_id,
           size: '40x40', gravity: 'north', y: 5   )
