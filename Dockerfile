@@ -38,6 +38,7 @@ FROM builder-base AS development
 ENV RAILS_ENV=development
 
 ARG PACKAGES
+ARG DEV_PACKAGES="postgresql-client"
 ARG RAILS_ROOT
 
 ENV BUNDLE_APP_CONFIG="$RAILS_ROOT/.bundle"
@@ -45,5 +46,5 @@ ENV BUNDLE_PATH=/bundler
 ENV BUNDLE_BIN="$BUNDLE_PATH/bin"
 ENV PATH="$RAILS_ROOT/bin:$BUNDLE_BIN:$PATH"
 
-RUN apk add --update-cache $PACKAGES && \
+RUN apk add --update-cache $PACKAGES $DEV_PACKAGES && \
     bundle install --jobs 4 --retry 3
