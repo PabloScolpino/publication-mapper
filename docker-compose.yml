@@ -31,6 +31,8 @@ services:
       - publicationmapper
     volumes:
       - pg-data:/var/lib/postgresql/data
+    ports:
+      - "25432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_DB: pubmap
