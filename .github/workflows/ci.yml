@@ -32,6 +32,7 @@ jobs:
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/pubmap_test
       RAILS_ENV: test
+      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
     steps:
     - uses: actions/checkout@v2
@@ -68,5 +69,5 @@ jobs:
 
     - name: Code Climate upload results
       run: |
-        ./cc-test-reporter after-build -r $CC_TEST_REPORTER_ID
+        ./cc-test-reporter after-build
 
