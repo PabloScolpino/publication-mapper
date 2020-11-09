@@ -68,5 +68,5 @@ jobs:
 
     - name: Code Climate upload results
       run: |
-        ./cc-test-reporter after-build
+        ./cc-test-reporter after-build -r $CC_TEST_REPORTER_ID
 
