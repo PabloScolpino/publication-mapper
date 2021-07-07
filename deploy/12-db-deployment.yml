@@ -1,0 +1,42 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: publication-mapper-db
+  labels:
+    app: publication-mapper
+
+spec:
+  selector:
+    matchLabels:
+      app: publication-mapper-db
+
+  strategy:
+    type: Recreate
+
+  template:
+    metadata:
+      labels:
+        app: publication-mapper-db
+
+    spec:
+      containers:
+      - name: db
+        image: postgres:9.6.15-alpine
+        env:
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db-config
+                key: password
+        ports:
+          - containerPort: 5432
+            name: postgres
+        volumeMounts:
+          - name: db-persistent-storage
+            mountPath: /var/lib/postgresql/data
+            subPath: postgres
+      volumes:
+        - name: db-persistent-storage
+          persistentVolumeClaim:
+            claimName: publication-mapper-db-pv-claim
+
