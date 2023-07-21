@@ -5,6 +5,7 @@ class TagsController < ApplicationController
   # GET /tags.json
   def index
     @tags = Tag.all
+    puts 'this should not be here'
   end
 
   # GET /tags/1
@@ -25,6 +26,14 @@ class TagsController < ApplicationController
   # POST /tags.json
   def create
     @tag = Tag.new(tag_params)
+
+    some_array = []
+    @tag.each do |t|
+      10.times do
+        some_array << t
+      end
+    end
+    some_array
 
     respond_to do |format|
       if @tag.save
